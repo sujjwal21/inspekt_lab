@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CardContent from "@mui/joy/CardContent";
 import { IconButton, Typography } from "@mui/material";
+import './Gallery.css'; // Assuming you have an external CSS file for styles
 
 const Gallery = ({
   capturedImages = JSON.parse(localStorage.getItem("capturedImages")) || [],
@@ -12,35 +13,25 @@ const Gallery = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-around",
-      alignContent: "center",
-      alignItems: "center",
-      padding: "10px",
-      margin: "5px",
-      marginLeft: 17,
-      marginTop:"25px",
-      border: "1px solid #ccc",
-      borderRadius: "10px",
-    }}>
-      <Typography variant="h5" color="secondary" >
-          Image Gallery
-          </Typography>
-      <div
-        className="gallery"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gridAutoRows: "auto",
-          gap: "50px",
-          justifyContent: "space-around",
-          alignContent: "center",
-          alignItems: "center",
-          padding: "10px",
-        }}
-      >
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignContent: "center",
+        alignItems: "center",
+        padding: "10px",
+        margin: "5px",
+        marginLeft: 17,
+        marginTop: "25px",
+        border: "1px solid #ccc",
+        borderRadius: "10px",
+      }}
+    >
+      <Typography variant="h5" color="secondary">
+        Image Gallery
+      </Typography>
+      <div className="gallery">
         {capturedImages.map((image, index) => (
           <Card
             sx={{ width: 270 }}
