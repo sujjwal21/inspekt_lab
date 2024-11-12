@@ -30,30 +30,16 @@ const CameraCapture = () => {
 
   const switchCamera = () => setFrontCamera(!frontCamera);
 
-  // const capture = useCallback(() => {
-  //   const imageSrc = webcamRef.current.getScreenshot();
-  //   if (imageSrc) {
-  //     setCapturedImages([...capturedImages, { original: imageSrc, thumbnail: imageSrc }]);
-  //   }
-  // }, [capturedImages]);
-
   const openModal = (index) => {
     setSelectedImageIndex(index);
     setModalIsOpen(true);
   };
 
-  // const closeModal = () => setModalIsOpen(false);
-
-  // const deleteImage = (index) => {
-  //   setCapturedImages(capturedImages.filter((_, i) => i !== index));
-  //   if (index === selectedImageIndex) closeModal();
-  // };
   //////////////////////////////////////////////////
   const capture = useCallback(() => {
     const container = webcamRef.current.video;
     const canvas = document.createElement("canvas");
 
-    // Calculate the dimensions of the visible portion inside the webcam container
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
     const zoomedWidth = containerWidth / zoom;
@@ -61,11 +47,9 @@ const CameraCapture = () => {
     const offsetX = (containerWidth - zoomedWidth) / 2;
     const offsetY = (containerHeight - zoomedHeight) / 2;
 
-    // Set canvas dimensions
     canvas.width = zoomedWidth;
     canvas.height = zoomedHeight;
 
-    // Draw the webcam video frame on the canvas with applied zoom
     const ctx = canvas.getContext("2d");
     ctx.drawImage(
       container,
@@ -79,10 +63,8 @@ const CameraCapture = () => {
       zoomedHeight
     );
 
-    // Convert canvas to image
     const imageSrc = canvas.toDataURL("image/png");
 
-    // Save the captured image
     if (imageSrc) {
       const updatedImages = [...capturedImages, { original: imageSrc }];
       localStorage.setItem("capturedImages", JSON.stringify(updatedImages));
@@ -152,7 +134,7 @@ const CameraCapture = () => {
             deleteImage={deleteImage}
           />
         </>
-      ):null}
+      ) : null}
       <ImageModal
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
