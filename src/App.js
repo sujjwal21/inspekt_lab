@@ -1,8 +1,10 @@
-import CameraCapture from './components/CameraCaptureView';
+import CameraCapture from './components/CameraCapture';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div >
+      <Navbar/>
       <CameraCapture/>
     </div>
   );
