@@ -4,14 +4,14 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CardContent from "@mui/joy/CardContent";
 import { IconButton, Typography } from "@mui/material";
-import './Gallery.css'; // Assuming you have an external CSS file for styles
+import "./Gallery.css"; // Assuming you have an external CSS file for styles
 
 const Gallery = ({
   capturedImages = JSON.parse(localStorage.getItem("capturedImages")) || [],
   openModal,
   deleteImage,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       style={{
@@ -37,7 +37,15 @@ const Gallery = ({
             sx={{ width: 270 }}
             className="card"
             key={index}
-            style={{ justifyContent: "center", alignItems: "center" }}
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              transition: "transform 0.3s ease-in-out",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             <div className="gallery-item">
               <img
@@ -49,11 +57,11 @@ const Gallery = ({
                   objectFit: "cover",
                   border: "0.5px dashed #ccc",
                   cursor: "pointer",
-                  transition: "transform 0.8s ease",
-                  transform: isHovered ? "scale(1.1)" : "scale(1)",
+                  // transition: "transform 0.8s ease",
+                  // transform: isHovered ? "scale(1.1)" : "scale(1)",
                 }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                // onMouseEnter={() => setIsHovered(true)}
+                // onMouseLeave={() => setIsHovered(false)}
                 onClick={() => openModal(index)}
               />
             </div>
